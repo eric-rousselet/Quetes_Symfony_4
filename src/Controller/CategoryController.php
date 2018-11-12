@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: wilder21
- * Date: 08/11/18
- * Time: 09:48
+ * Date: 12/11/18
+ * Time: 11:05
  */
 
 namespace App\Controller;
@@ -14,20 +14,25 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form;
 
-class HomeController extends AbstractController
+class CategoryController extends AbstractController
 {
     /**
-     * @Route("/", methods={"GET"})
+     * @Route("/category", methods={"GET"})
      */
-    public function index()
+    public function category()
     {
+        $category = new Category($request);
         $form = $this->createForm(
-            Form\ArticleSearchType::class,
-            null,
+            Form\CategoryType::class,
+            $category,
             ['method' => Request::METHOD_GET]
         );
+         $form->handleRequest($request);
+         if ($form->isSubmitted()) {
+
+         }
         return $this->render(
-            'home.html.twig', [
+            'category.html.twig', [
                 'form' => $form->createView(),
             ]
         );
