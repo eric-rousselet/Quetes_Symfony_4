@@ -8,20 +8,21 @@
 
 namespace App\Controller;
 
+use App\Entity;
+use App\Form;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use App\Form;
 
 class CategoryController extends AbstractController
 {
     /**
      * @Route("/category", methods={"GET"})
      */
-    public function category()
+    public function category(Request $request) : Response
     {
-        $category = new Category($request);
+        $category = new Entity\Category($request);
         $form = $this->createForm(
             Form\CategoryType::class,
             $category,
