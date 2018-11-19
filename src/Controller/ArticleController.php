@@ -42,4 +42,12 @@ class ArticleController extends AbstractController
             ]
         );
     }
+
+    /**
+     * @Route("/article/{id}", name="article_id", methods={"GET|POST"})
+     */
+    public function tagsByArticle(Entity\Article $article) : Response
+    {
+        return $this->render('article.html.twig', ['tags' => $article->getTags(), 'title' => $article->getTitle()]);
+    }
 }
